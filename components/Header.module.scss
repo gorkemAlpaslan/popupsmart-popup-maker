@@ -1,0 +1,51 @@
+.headWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 1128px;
+  justify-content: space-between;
+  padding: 15px;
+  font-size: 16px;
+  font-family: Inter;
+
+  .headMenu {
+    display: flex;
+    width: 640px;
+    justify-content: space-between;
+
+    a {
+      margin: 8px;
+    }
+  }
+  .headTitle {
+    display: flex;
+    align-items: center;
+
+    h3 {
+      margin-left: 8px;
+    }
+  }
+
+  .headItems {
+    display: flex;
+  }
+
+  .headItem {
+    display: flex;
+    align-items: center;
+  }
+
+  .Sign {
+    display: flex;
+
+    button {
+      border: none;
+      margin-left: 12px;
+      background: #7d4aea;
+      color: #ffffff;
+      box-shadow: 0px 3px 7px 1px rgba(125, 74, 234, 0.2);
+      border-radius: 12px;
+      cursor: pointer;
+    }
+  }
+}
