@@ -1,0 +1,25 @@
+import TemplateOne from "./TemplateOne";
+import TemplateTwo from "./TemplateTwo";
+import TemplateThree from "./TemplateThree";
+import TemplateFour from "./TemplateFour";
+import TemplateFive from "./TemplateFive";
+import TemplateSix from "./TemplateSix";
+import TemplateSeven from "./TemplateSeven";
+import TemplateEight from "./TemplateEight";
+import TemplateNine from "./TemplateNine";
+import TemplateTen from "./TemplateTen";
+import TemplateEleven from "./TemplateEleven";
+import TemplateTwelve from "./TemplateTwelve";
+
+export const Template1 = TemplateOne;
+export const Template2 = TemplateTwo;
+export const Template3 = TemplateThree;
+export const Template4 = TemplateFour;
+export const Template5 = TemplateFive;
+export const Template6 = TemplateSix;
+export const Template7 = TemplateSeven;
+export const Template8 = TemplateEight;
+export const Template9 = TemplateNine;
+export const Template10 = TemplateTen;
+export const Template11 = TemplateEleven;
+export const Template12 = TemplateTwelve;
