@@ -10,7 +10,6 @@ const CounterOn: NextPage<{
   message: string;
 }> = (props) => {
   const [counterOn, SetCounterOn] = useState(false);
-
   return (
     <ScrollTrigger
       onEnter={() => {

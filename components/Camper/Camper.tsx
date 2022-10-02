@@ -1,6 +1,6 @@
 import camperStyle from "./Camper.module.scss";
-import Mediterranean from "../public/camper/Mediterranean_Sneakers.png";
-import camperLogo from "../public/camper/Camper_logo.png";
+import Mediterranean from "../../public/camper/Mediterranean_Sneakers.png";
+import camperLogo from "../../public/camper/Camper_logo.png";
 import Image from "next/image";
 
 const Camper = () => {

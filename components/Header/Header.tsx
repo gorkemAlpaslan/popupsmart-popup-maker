@@ -1,6 +1,6 @@
 import headerStyles from "./Header.module.scss";
-import logo from "../public/home_icons/popupsmart_case_logo.png";
-import down from "../public/home_icons/down.png";
+import logo from "../../public/home_icons/popupsmart_case_logo.png";
+import down from "../../public/home_icons/down.png";
 import Image from "next/image";
 import React from "react";
 
