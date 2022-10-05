@@ -1,5 +1,5 @@
 import { useState } from "react";
-import homeStyle from "../../../styles/Home.module.scss";
+import TargetingRulesStyle from "./TargetingRulesStyle.module.scss";
 import ComputerSelected from "../../../public/TargetingRulesIcons/Computer_Selected_icon.png";
 import Computerunselected from "../../../public/TargetingRulesIcons/Computer_Unselected_icon.png";
 import MobileSelected from "../../../public/TargetingRulesIcons/Mobile_Selected_icon.png";
@@ -25,23 +25,26 @@ import {
 import { useTemplateContext } from "../../Context/TemplateContext";
 
 const TargetingRules = () => {
-  const [visitorDeviceisChecked, SetVisitorDeviceisChecked] = useState(false);
-  const [afterXScrollIsChecked, SetAfterXScrollIsChecked] = useState(false);
-  const [afterPercentageScrollIsChecked, SetAfterPercentageScrollIsChecked] =
-    useState(false);
-  const [soruceDomainIsChecked, SetSoruceDomainIsChecked] = useState(false);
-  const [browserLanguageIsChecked, SetBrowserLanguageIsChecked] =
-    useState(false);
-  const [exitIntentTargetingIsChecked, SetExitIntentTargetingIsChecked] =
-    useState(false);
-
   const {
     StageFour,
     VisitorDeviceHandleChange,
     visitorDevice,
-    afterXScrollHandleChange,
-    afterPercentageScrollHandleChange,
+    afterPScrollHandleChange,
+    afterSecScrollHandleChange,
     TrafficSourceHandleChange,
+    visitorDeviceisChecked,
+    SetVisitorDeviceisChecked,
+    afterPScrollIsChecked,
+    SetAfterPScroll,
+    SetAfterPScrollIsChecked,
+    afterSecScrollIsChecked,
+    SetAfterSecScrollIsChecked,
+    soruceDomainIsChecked,
+    SetSoruceDomainIsChecked,
+    browserLanguageIsChecked,
+    SetBrowserLanguageIsChecked,
+    exitIntentTargetingIsChecked,
+    SetExitIntentTargetingIsChecked,
   } = useTemplateContext();
 
   ////////////////////////////////////
@@ -120,13 +123,13 @@ const TargetingRules = () => {
   ////////////////////////////////////
 
   return (
-    <div className={homeStyle.TargetingPageEdit}>
-      <div className={homeStyle.Stage} ref={StageFour}>
+    <div className={TargetingRulesStyle.TargetingPageEdit}>
+      <div className={TargetingRulesStyle.Stage} ref={StageFour}>
         <div>4</div>
         <h2>Targeting Rules</h2>
       </div>
-      <FormGroup>
-        <div className={homeStyle.formElement}>
+      <FormGroup className="mb-6">
+        <div className={TargetingRulesStyle.formElement}>
           <h4>Visitor Device</h4>
           <Switch
             checked={visitorDeviceisChecked}
@@ -141,14 +144,14 @@ const TargetingRules = () => {
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
-            className={homeStyle.formControl}
+            className={TargetingRulesStyle.formControl}
             onChange={VisitorDeviceHandleChange}
           >
             <FormControlLabel
               value="Desktop"
               control={<Radio />}
               label={
-                <div className={homeStyle.formLabel}>
+                <div className={TargetingRulesStyle.formLabel}>
                   {visitorDevice === "Desktop" &&
                   visitorDeviceisChecked === true ? (
                     <Image src={ComputerSelected} alt="computerSelected" />
@@ -159,13 +162,13 @@ const TargetingRules = () => {
                   <span> Desktop</span>
                 </div>
               }
-              className={homeStyle.formControllabel}
+              className={TargetingRulesStyle.formControllabel}
             />
             <FormControlLabel
               value="Mobile"
               control={<Radio />}
               label={
-                <div className={homeStyle.formLabel}>
+                <div className={TargetingRulesStyle.formLabel}>
                   {visitorDevice === "Mobile" &&
                   visitorDeviceisChecked === true ? (
                     <Image src={MobileSelected} alt="MobileSelected" />
@@ -176,58 +179,66 @@ const TargetingRules = () => {
                   <span>Mobile</span>
                 </div>
               }
-              className={homeStyle.formControllabel}
+              className={TargetingRulesStyle.formControllabel}
             />
           </RadioGroup>
         </FormControl>
       </FormGroup>
-      <FormGroup>
-        <div className={homeStyle.formElement}>
+      <FormGroup className="mb-6">
+        <div className={TargetingRulesStyle.formElement}>
           <h4>After X seconds</h4>
           <Switch
-            checked={afterXScrollIsChecked}
+            checked={afterSecScrollIsChecked}
             onChange={() => {
-              SetAfterXScrollIsChecked(!afterXScrollIsChecked);
+              if (afterSecScrollIsChecked === false) {
+                afterSecScrollHandleChange(0);
+              }
+              SetAfterSecScrollIsChecked(!afterSecScrollIsChecked);
             }}
             color="secondary"
           />
         </div>
         <TextField
           id="outlined-basic"
-          label="Outlined"
+          label="Popup appears after ... Seconds"
           variant="outlined"
           onChange={(e) => {
-            afterXScrollHandleChange(e);
+            let num = e.target.value;
+            parseInt(num);
+            afterSecScrollHandleChange(num);
           }}
-          disabled={afterXScrollIsChecked === false}
-        />
-      </FormGroup>
-      <FormGroup>
-        <div className={homeStyle.formElement}>
-          <h4>After % Scroll</h4>
-          <Switch
-            checked={afterPercentageScrollIsChecked}
-            onChange={() => {
-              SetAfterPercentageScrollIsChecked(
-                !afterPercentageScrollIsChecked
-              );
-            }}
-            color="secondary"
-          />
-        </div>
-        <TextField
-          id="outlined-basic"
-          label="Outlined"
-          variant="outlined"
-          onChange={(e) => {
-            afterPercentageScrollHandleChange(e);
-          }}
-          disabled={afterPercentageScrollIsChecked === false}
+          disabled={afterSecScrollIsChecked === false}
         />
       </FormGroup>
 
-      <FormGroup>
-        <div className={homeStyle.formElement}>
+      <FormGroup className="mb-6">
+        <div className={TargetingRulesStyle.formElement}>
+          <h4>After % Scroll</h4>
+          <Switch
+            checked={afterPScrollIsChecked}
+            onChange={() => {
+              if (afterPScrollIsChecked === false) {
+                afterPScrollHandleChange(0);
+              }
+              SetAfterPScrollIsChecked(!afterPScrollIsChecked);
+            }}
+            color="secondary"
+          />
+        </div>
+        <TextField
+          id="outlined-basic"
+          label="Popup appears after page scrolled down ...%"
+          variant="outlined"
+          onChange={(e) => {
+            let num = e.target.value;
+            parseInt(num);
+            afterPScrollHandleChange(num);
+          }}
+          disabled={afterPScrollIsChecked === false}
+        />
+      </FormGroup>
+      <FormGroup className="mb-6">
+        <div className={TargetingRulesStyle.formElement}>
           <h4>Traffic Source</h4>
           <Switch
             checked={soruceDomainIsChecked}
@@ -244,8 +255,8 @@ const TargetingRules = () => {
           disabled={soruceDomainIsChecked === false}
         />
       </FormGroup>
-      <FormGroup>
-        <div className={homeStyle.formElement}>
+      <FormGroup className="mb-6">
+        <div className={TargetingRulesStyle.formElement}>
           <h4>Browser Language</h4>
           <Switch
             checked={browserLanguageIsChecked}
@@ -269,13 +280,13 @@ const TargetingRules = () => {
               <MenuItem
                 key={Language}
                 value={Language}
-                className={homeStyle.languageSelector}
+                className={TargetingRulesStyle.languageSelector}
               >
                 <Checkbox checked={language.indexOf(Language) > -1} />
                 <ListItemText primary={Language} />
               </MenuItem>
             ))}
-            <div className={homeStyle.selectorbuttons}>
+            <div className={TargetingRulesStyle.selectorbuttons}>
               <div
                 onClick={() => {
                   setLanguage([]);
@@ -287,7 +298,7 @@ const TargetingRules = () => {
           </Select>
         </FormControl>
       </FormGroup>
-      <div className={homeStyle.formElement}>
+      <div className={TargetingRulesStyle.formElement}>
         <h4>Exit Intent Targeting</h4>
         <Switch
           checked={exitIntentTargetingIsChecked}

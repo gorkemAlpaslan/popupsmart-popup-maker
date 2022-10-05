@@ -1,16 +1,5 @@
-import { useState } from "react";
-import homeStyle from "../../styles/Home.module.scss";
+import CustomizationEditStyle from "./CustomizationEditStyle.module.scss";
 import { useTemplateContext } from "../Context/TemplateContext";
-import {
-  FormGroup,
-  FormControlLabel,
-  Switch,
-  TextField,
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  Radio,
-} from "@mui/material";
 import Appearance from "./CustomizationEditSections/Appearance";
 import Content from "./CustomizationEditSections/Content";
 import TargetingRules from "./CustomizationEditSections/TargetingRules";
@@ -31,7 +20,7 @@ const CustomizationEdit = () => {
   } = useTemplateContext();
 
   return (
-    <div className={homeStyle.CustomizationPageEdit}>
+    <div className={CustomizationEditStyle.CustomizationPageEdit}>
       <Appearance />
       <Content />
       <TargetingRules />

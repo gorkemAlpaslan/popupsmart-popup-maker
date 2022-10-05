@@ -1,6 +1,6 @@
 import Image from "next/image";
-import homeStyle from "../../styles/Home.module.scss";
 import { useTemplateContext } from "../../components/Context/TemplateContext";
+import TemplatesPageStyle from "./TemplatesPage.module.scss";
 
 /////////  Template Images  /////////
 import {
@@ -19,7 +19,7 @@ import {
 } from "../../public/template/index";
 
 const TemplatesPage = () => {
-  const { StageTwo, SetCurrentTemplate } = useTemplateContext();
+  const { StageOne, StageTwo, SetCurrentTemplate } = useTemplateContext();
 
   const TemplateList = [
     { component: "TemplateOne", image: Template_1, index: "1" },
@@ -37,25 +37,25 @@ const TemplatesPage = () => {
   ];
 
   return (
-    <div className={homeStyle.templates}>
-      <div className={homeStyle.templatesTitle}>
-        <div>
-          <h2>Modal Card Generator</h2>
+    <div className={TemplatesPageStyle.templates}>
+      <div className={TemplatesPageStyle.templatesTitle}>
+        <div className="mt-20">
+          <div className={TemplatesPageStyle.title}>Modal Card Generator</div>
           <p>
             Measure your return on email marketing efforts easier and faster by
             using thebest online tools. Popupsmart is ready to help you build an
             efficient email list!
           </p>
         </div>
-        <div className={homeStyle.Stage}>
+        <div className={TemplatesPageStyle.Stage} ref={StageOne}>
           <div>1</div>
           <h2>Choose your template</h2>
         </div>
-        <div className={homeStyle.AllTemplatesWraper}>
+        <div className={TemplatesPageStyle.AllTemplatesWraper}>
           {TemplateList.map((template) => {
             return (
               <div
-                className={homeStyle.TemplateEach}
+                className={TemplatesPageStyle.TemplateEach}
                 key={`Template_${template.index}`}
                 onClick={() => {
                   SetCurrentTemplate(template.component);
@@ -66,7 +66,7 @@ const TemplatesPage = () => {
                   src={template.image}
                   alt={`Template_${template.index}`}
                 />
-                <div className={homeStyle.SelectTemplate}>
+                <div className={TemplatesPageStyle.SelectTemplate}>
                   <div>Select Template</div>
                 </div>
               </div>

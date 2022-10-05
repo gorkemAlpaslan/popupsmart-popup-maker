@@ -12,33 +12,18 @@
     display: flex;
     width: 640px;
     justify-content: space-between;
-
     a {
       margin: 8px;
     }
   }
-  .headTitle {
-    display: flex;
-    align-items: center;
-
-    h3 {
-      margin-left: 8px;
-    }
-  }
-
-  .headItems {
-    display: flex;
-  }
-
-  .headItem {
-    display: flex;
-    align-items: center;
-  }
 
   .Sign {
     display: flex;
+    justify-content: center;
+    align-items: center;
 
     button {
+      padding: 9px 20px;
       border: none;
       margin-left: 12px;
       background: #7d4aea;

@@ -1,5 +1,5 @@
 import React from "react";
-import homeStyle from "../../styles/Home.module.scss";
+import CustomizationCurrentTemplateStyle from "./CustomizationCurrentTemplateStyle.module.scss";
 import { useTemplateContext } from "../Context/TemplateContext";
 
 const CustomizationCurrentTemplate = () => {
@@ -18,8 +18,10 @@ const CustomizationCurrentTemplate = () => {
     TemplateEleven,
     TemplateTwelve,
   } = useTemplateContext();
+
   return (
-    <div className={homeStyle.currentTemplateWraper}>
+    <div className={CustomizationCurrentTemplateStyle.currentTemplateWraper}>
+      <div className="absolute top-[-25px]">User Window</div>
       {currentTemplate == "TemplateOne" ? <TemplateOne></TemplateOne> : null}
       {currentTemplate == "TemplateTwo" ? <TemplateTwo></TemplateTwo> : null}
       {currentTemplate == "TemplateThree" ? (

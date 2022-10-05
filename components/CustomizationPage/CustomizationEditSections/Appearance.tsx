@@ -1,5 +1,5 @@
 import React from "react";
-import homeStyle from "../../../styles/Home.module.scss";
+import AppearanceStyle from "./AppearanceStyle.module.scss";
 import { useTemplateContext } from "../../Context/TemplateContext";
 
 const Appearance = () => {
@@ -16,41 +16,44 @@ const Appearance = () => {
     convertFile,
   } = useTemplateContext();
   return (
-    <div className={homeStyle.AppearancePageEdit}>
-      <div className={homeStyle.Stage}>
+    <div>
+      <div className={AppearanceStyle.Stage}>
         <div>2</div>
-        <h2>Appearance (Size, colors, logo)</h2>
+        <h2 className="mr-1">Appearance</h2>
+        <p>(Size, colors, logo)</p>
       </div>
-      <div className={homeStyle.CustomizeSizeWraper}>
+      <div className={AppearanceStyle.CustomizeSizeWraper}>
         <p>Size</p>
-        <div className={homeStyle.sizes}>
-          {sizes.map((s: string) => {
+        <div className={AppearanceStyle.sizes}>
+          {sizes.map((s: { title: string; value: string }) => {
             return (
               <div
-                className={size === s ? homeStyle.sizeSelected : ""}
-                key={s}
+                className={
+                  size.title === s.title ? AppearanceStyle.sizeSelected : ""
+                }
+                key={s.title}
                 onClick={() => {
                   SetSize(s);
                 }}
               >
-                <p>{s}</p>
+                <p>{s.title}</p>
               </div>
             );
           })}
         </div>
       </div>
-      <div className={homeStyle.CustomizePositionWraper}>
+      <div className={AppearanceStyle.CustomizePositionWraper}>
         <p>Position</p>
-        <div className={homeStyle.Positions}>
-          {positions.map((p: string) => {
+        <div className={AppearanceStyle.Positions}>
+          {positions.map((p: { value: string; WraperStyle: string }) => {
             return (
               <div
                 className={
-                  position === p
-                    ? homeStyle.sizeSelected
-                    : homeStyle.positionsEach
+                  position.value === p.value
+                    ? AppearanceStyle.sizeSelected
+                    : AppearanceStyle.positionsEach
                 }
-                key={p}
+                key={p.value}
                 onClick={() => {
                   SetPosition(p);
                 }}
@@ -59,23 +62,25 @@ const Appearance = () => {
           })}
         </div>
       </div>
-      <div className={homeStyle.CustomizeColorsWraper}>
-        <p>Colors</p>
-        <div className={homeStyle.Colors}>
-          {colors.map((c: string) => {
+      <div className={AppearanceStyle.CustomizeColorsWraper}>
+        <p className="mb-4">Colors</p>
+        <div className={AppearanceStyle.Colors}>
+          {colors.map((c: { color: string; value: string }) => {
             return (
               <div
                 style={{
-                  backgroundColor: c,
+                  backgroundColor: c.color,
                   width: "42px",
                   height: "42px",
                   marginRight: "10px",
                   borderRadius: "10px",
                 }}
                 className={
-                  color === c ? homeStyle.colorSelected : homeStyle.colorsEach
+                  color.color === c.color
+                    ? AppearanceStyle.colorSelected
+                    : AppearanceStyle.colorsEach
                 }
-                key={c}
+                key={c.color}
                 onClick={() => {
                   SetColor(c);
                 }}
@@ -84,11 +89,11 @@ const Appearance = () => {
           })}
         </div>
       </div>
-      <div className={homeStyle.CustomizeImageWraper}>
-        <p>Upload Logo</p>
-        <div className={homeStyle.Image}>
+      <div className={AppearanceStyle.CustomizeImageWraper}>
+        <p className="mb-4">Upload Logo</p>
+        <div className={AppearanceStyle.Image}>
           <input
-            className={homeStyle.fileInput}
+            className={AppearanceStyle.fileInput}
             type="file"
             onChange={(e) => {
               convertFile(e.target.files, "icon");

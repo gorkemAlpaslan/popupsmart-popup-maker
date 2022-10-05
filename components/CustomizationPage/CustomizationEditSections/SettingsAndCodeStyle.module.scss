@@ -1,0 +1,40 @@
+.Stage {
+  margin-top: 73px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 99px;
+    background: #eaeaea;
+    margin-right: 15px;
+    font-weight: 600;
+  }
+}
+
+.getButton {
+  width: 184px;
+  height: 60px;
+  background-color: #7d4aea;
+  border-radius: 12px;
+  color: white;
+  margin-top: 50px;
+}
+
+.getButton:hover {
+  background-color: #8e71c7;
+}
+
+.getCode {
+  margin-top: 30px;
+
+  background: #333333;
+  border-radius: 8px;
+  width: 378px;
+  height: 260px;
+}

@@ -1,0 +1,118 @@
+.templates {
+  display: flex;
+  background-color: #ffffff;
+  width: 1225px;
+  margin: 0px auto;
+
+  .templatesTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .AllTemplatesWraper {
+      height: 660px;
+      width: 1194px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .TemplateEach {
+        width: 276px;
+        height: 200px;
+        background: #f5f5f5;
+        border: 1px solid #eaeaea;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .SelectTemplate {
+          width: 276px;
+          height: 200px;
+          border-radius: 12px;
+          position: absolute;
+          transition: all 0.2s ease-in-out;
+
+          div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 74px;
+            left: 55px;
+            width: 165px;
+            height: 50px;
+            background: #ffffff;
+            box-shadow: 0px 5px 10px 2px rgba(125, 74, 234, 0.27);
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
+            letter-spacing: -0.03em;
+            color: #7d4aea;
+            display: none;
+          }
+        }
+      }
+      :hover {
+        .SelectTemplate {
+          background: rgba(125, 74, 234, 0.6);
+          div {
+            display: flex;
+          }
+        }
+      }
+    }
+
+    .title {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 48px;
+      letter-spacing: -0.03em;
+      color: #000000;
+    }
+
+    p {
+      width: 459px;
+      height: 72px;
+      margin-top: 15px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: -0.015em;
+    }
+  }
+  .Stage {
+    margin-top: 73px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 99px;
+      background: #eaeaea;
+      margin-right: 15px;
+      font-weight: 600;
+    }
+  }
+
+  h2 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 36px;
+    letter-spacing: -0.03em;
+    color: #000000;
+  }
+}

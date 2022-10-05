@@ -1,15 +1,15 @@
-import homeStyle from "../../styles/Home.module.scss";
-import Camper from "../../components/Camper/Camper";
-import { useTemplateContext } from "../../components/Context/TemplateContext";
+import InfoStyle from "./InfoStyle.module.scss";
+import Camper from "./Camper/Camper";
+import { useTemplateContext } from "../../Context/TemplateContext";
 import CounterOn from "./CounterOn";
 
 const Info = () => {
   const { info } = useTemplateContext();
 
   return (
-    <div className={homeStyle.info}>
+    <div className={InfoStyle.info}>
       <Camper />
-      <div className={homeStyle.data}>
+      <div className={InfoStyle.data}>
         {info.map(
           (i: {
             index: string;
@@ -18,7 +18,7 @@ const Info = () => {
             message: string;
           }) => {
             return (
-              <div className={homeStyle.dataEach} key={i.index}>
+              <div className={InfoStyle.dataEach} key={i.index}>
                 <h1>
                   <CounterOn
                     number={i.number}
@@ -30,7 +30,7 @@ const Info = () => {
             );
           }
         )}
-        <div className={homeStyle.dataEach}>
+        <div className={InfoStyle.dataEach}>
           <h2>Popupsmart meets all your business needs.</h2>
         </div>
       </div>

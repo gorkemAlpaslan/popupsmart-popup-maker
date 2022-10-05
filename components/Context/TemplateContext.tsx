@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState, useRef } from "react";
 ////
-import TemplateOneStyle from "./TemplateOne.module.scss";
-import { IoMdCloseCircleOutline } from "react-icons/io";
+import CloseWindow from "../../public/template_icons/Template_exit_icon.png";
 import Image from "next/image";
 import icon from "../../public/template_icons/Template_1_icon.png";
 
@@ -17,17 +16,54 @@ export const useTemplateContext: any = () => useContext(TemplateContext);
 export const TemplateContextProvider = ({
   children,
 }: TemplateContextProviderProps) => {
-  const [size, SetSize] = useState<string | null>(null);
-  const [position, SetPosition] = useState<string | null>(null);
-  const [color, SetColor] = useState<string | null>(null);
   const [currentTemplate, SetCurrentTemplate] = useState<string | null>(null);
-  const [visitorDevice, SetVisitorDevice] = useState<string | null>(null);
-  const [afterXScroll, SetAfterXScroll] = useState<string | null>(null);
-  const [afterPercentageScroll, SetAfterPercentageScroll] = useState<
-    string | null
-  >(null);
-  const [trafficSource, SetTrafficSource] = useState<string | null>(null);
 
+  const [size, SetSize] = useState<{
+    title: string;
+    value: string;
+    titleValue: string;
+    textValue: string;
+  }>({
+    title: "medium",
+    value:
+      "flex flex-col justify-center items-center w-[480px] p-8 rounded-xl bg-white border overflow-hidden",
+    titleValue: "font-bold text-3xl my-5",
+    textValue: "font-normal text-xl my-6",
+  });
+
+  const [position, SetPosition] = useState<{
+    value: string;
+    WraperStyle: string;
+  }>({
+    value: "top-left",
+    WraperStyle: "absolute top-0 left-0",
+  });
+
+  const [color, SetColor] = useState<{
+    color: string;
+    iconValue: string;
+    buttonValue: string;
+  }>({
+    color: "purple",
+    iconValue:
+      "flex justify-center items-center w-20 h-20 rounded-full my-2 bg-purple-800",
+    buttonValue:
+      "w-1/2 mx-1 h-[48px] rounded-xl border border-solid border-neutral-500 text-black bg-white hover:bg-purple-800",
+  });
+
+  const [visitorDeviceisChecked, SetVisitorDeviceisChecked] = useState(false);
+  const [afterPScrollIsChecked, SetAfterPScrollIsChecked] = useState(false);
+  const [afterSecScrollIsChecked, SetAfterSecScrollIsChecked] = useState(false);
+  const [soruceDomainIsChecked, SetSoruceDomainIsChecked] = useState(false);
+  const [browserLanguageIsChecked, SetBrowserLanguageIsChecked] =
+    useState(false);
+  const [exitIntentTargetingIsChecked, SetExitIntentTargetingIsChecked] =
+    useState(false);
+
+  const [visitorDevice, SetVisitorDevice] = useState<string | null>(null);
+  const [afterSecScroll, SetAfterSecScroll] = useState<number>(0);
+  const [afterPScroll, SetAfterPScroll] = useState<number>(0);
+  const [trafficSource, SetTrafficSource] = useState<string | null>(null);
   const [customTemplateIcon, setCustomTemplateIcon] = useState<string>("");
   const [customTemplateImage, setcustomTemplateImage] = useState<string>("");
 
@@ -35,6 +71,10 @@ export const TemplateContextProvider = ({
   const [contentInputTwo, SetContentInputTwo] = useState("");
   const [contentInputThree, SetContentInputThree] = useState("");
   const [contentInputFour, SetContentInputFour] = useState("");
+
+  const [webHookUrl, SetWebHookUrl] = useState<string | null>(null);
+  const [sendFormSub, SetSendFormSub] = useState<boolean>(false);
+  const [sendClickData, SetSendClickData] = useState<boolean>(false);
 
   const refInputOne = useRef<HTMLInputElement | null>(null);
   const refInputTwo = useRef<HTMLInputElement | null>(null);
@@ -44,6 +84,7 @@ export const TemplateContextProvider = ({
   const StageFour = useRef<HTMLHeadingElement>(null);
   const StageThree = useRef<HTMLHeadingElement>(null);
   const StageTwo = useRef<HTMLHeadingElement>(null);
+  const StageOne = useRef<HTMLHeadingElement>(null);
 
   function convertFile(files: FileList | null, type: string) {
     if (files) {
@@ -73,16 +114,12 @@ export const TemplateContextProvider = ({
     SetVisitorDevice((event.target as HTMLInputElement).value);
   };
 
-  const afterXScrollHandleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    SetAfterXScroll((event.target as HTMLInputElement).value);
+  const afterPScrollHandleChange = (num: number) => {
+    SetAfterPScroll(num);
   };
 
-  const afterPercentageScrollHandleChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    SetAfterPercentageScroll((event.target as HTMLInputElement).value);
+  const afterSecScrollHandleChange = (num: number) => {
+    SetAfterSecScroll(num);
   };
 
   const TrafficSourceHandleChange = (
@@ -91,20 +128,108 @@ export const TemplateContextProvider = ({
     SetTrafficSource((event.target as HTMLInputElement).value);
   };
 
-  const sizes = ["small", "medium", "large"];
+  const sizes = [
+    {
+      title: "small",
+      value:
+        "flex flex-col justify-center items-center w-[360px] p-6 rounded-xl bg-white border overflow-hidden",
 
-  const colors = ["black", "orange", "grey", "beige", "white"];
+      titleValue: "font-bold text-xl my-1",
+      textValue: "font-normal text-sm my-1",
+    },
+    {
+      title: "medium",
+      value:
+        "flex flex-col justify-center items-center w-[480px] p-8 rounded-xl bg-white border overflow-hidden",
+      titleValue: "font-bold text-3xl my-5",
+      textValue: "font-normal text-xl my-6",
+    },
+    {
+      title: "large",
+      value:
+        "flex flex-col justify-center items-center w-[600px] p-10 rounded-xl bg-white border overflow-hidden",
+
+      titleValue: "font-bold text-5xl my-5",
+      textValue: "font-normal text-3xl my-10",
+    },
+  ];
+
+  const colors = [
+    {
+      color: "black",
+      iconValue:
+        "flex justify-center items-center w-20 h-20 rounded-full my-2 bg-black",
+      buttonValue:
+        "w-1/2 mx-1 h-[48px] rounded-xl border border-solid border-neutral-500 text-black bg-white hover:bg-black",
+    },
+    {
+      color: "red",
+      iconValue:
+        "flex justify-center items-center w-20 h-20 rounded-full my-2 bg-red-500",
+      buttonValue:
+        "w-1/2 mx-1 h-[48px] rounded-xl border border-solid border-neutral-500 text-black bg-white hover:bg-red-500",
+    },
+    {
+      color: "green",
+      iconValue:
+        "flex justify-center items-center w-20 h-20 rounded-full my-2 bg-green-500",
+      buttonValue:
+        "w-1/2 mx-1 h-[48px] rounded-xl border border-solid border-neutral-500 text-black bg-white hover:bg-green-500",
+    },
+    {
+      color: "purple",
+      iconValue:
+        "flex justify-center items-center w-20 h-20 rounded-full my-2 bg-purple-800",
+      buttonValue:
+        "w-1/2 mx-1 h-[48px] rounded-xl border border-solid border-neutral-500 text-black bg-white hover:bg-purple-800",
+    },
+    {
+      color: "blue",
+      iconValue:
+        "flex justify-center items-center w-20 h-20 rounded-full my-2 bg-indigo-600",
+      buttonValue:
+        "w-1/2 mx-1 h-[48px] rounded-xl border border-solid border-neutral-500 text-black bg-white hover:bg-indigo-600",
+    },
+  ];
 
   const positions = [
-    "top-left",
-    "top",
-    "top-right",
-    "left",
-    "center",
-    "right",
-    "bottom-left",
-    "bottom",
-    "bottom-right",
+    {
+      value: "top-left",
+      WraperStyle: "absolute top-0 left-0",
+    },
+    {
+      value: "top",
+      WraperStyle: "absolute top-0 left-1/2 transform -translate-x-1/2",
+    },
+    {
+      value: "top-right",
+      WraperStyle: "absolute top-0 right-0",
+    },
+    {
+      value: "left",
+      WraperStyle: "absolute top-1/2 left-0 transform -translate-y-1/2",
+    },
+    {
+      value: "center",
+      WraperStyle:
+        "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+    },
+    {
+      value: "right",
+      WraperStyle: "absolute top-1/2 right-0 transform -translate-y-1/2",
+    },
+    {
+      value: "bottom-left",
+      WraperStyle: "absolute bottom-0 left-0",
+    },
+    {
+      value: "bottom",
+      WraperStyle: "absolute bottom-0 left-1/2 transform -translate-x-1/2",
+    },
+    {
+      value: "bottom-right",
+      WraperStyle: "absolute bottom-0 right-0",
+    },
   ];
 
   const info = [
@@ -124,243 +249,250 @@ export const TemplateContextProvider = ({
   ];
 
   const TemplateOne = () => {
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [SecClass, setSecClass] = useState(false);
+
+    const handleScroll = () => {
+      const positionScroll = window.pageYOffset;
+      setScrollPosition(positionScroll);
+    };
+
+    const limit =
+      Math.max(
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
+      ) *
+      (afterPScroll / 100);
+
+    useEffect(() => {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+
+      setTimeout(() => {
+        setSecClass(true);
+      }, 1000 * afterSecScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+
     return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          {customTemplateIcon === "" ? (
-            <Image src={icon} alt="icon" />
+      <div
+        className={
+          afterPScrollIsChecked && afterSecScrollIsChecked === false
+            ? scrollPosition > limit
+              ? position.WraperStyle
+              : "hidden"
+            : afterSecScrollIsChecked
+            ? SecClass
+              ? position.WraperStyle
+              : "hidden"
+            : position.WraperStyle
+        }
+      >
+        <div className={size.value}>
+          <div
+            className="w-full flex flex-row-reverse"
+            onClick={() => {
+              SetCurrentTemplate(null);
+              StageOne.current?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            <Image src={CloseWindow} alt="closeWindow" />
+          </div>
+          <div className={color.iconValue}>
+            {customTemplateIcon === "" ? (
+              <Image src={icon} alt="icon" width="50%" height="50%" />
+            ) : (
+              customTemplateIcon.indexOf("image/") > -1 && (
+                <Image
+                  src={customTemplateIcon}
+                  alt=""
+                  width="50%"
+                  height="50%"
+                />
+              )
+            )}
+          </div>
+          {contentInputOne !== "" ? (
+            <h2 className={size.titleValue}>{contentInputOne}</h2>
           ) : (
-            customTemplateIcon.indexOf("image/") > -1 && (
-              <Image src={customTemplateIcon} alt="" width={300} height={300} />
-            )
+            <h2 className={size.titleValue}>Security code</h2>
           )}
-        </div>
-        {contentInputOne !== "" ? (
-          <h2>{contentInputOne}</h2>
-        ) : (
-          <h2>Security code</h2>
-        )}
-        {contentInputTwo !== "" ? (
-          <p>{contentInputTwo}</p>
-        ) : (
-          <p>This code expires in 24 hours</p>
-        )}
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
+          {contentInputTwo !== "" ? (
+            <p className={size.textValue}>{contentInputTwo}</p>
+          ) : (
+            <p className={size.textValue}>This code expires in 24 hours</p>
+          )}
+          <input className="w-4/6 h-[48px] border border-solid border-neutral-500 rounded-xl bg-white p-2"></input>
+          <div className="w-4/6 my-8 flex justify-between">
+            <button className={color.buttonValue}>Cancel</button>
+            <button className={color.buttonValue}>Continue</button>
+          </div>
         </div>
       </div>
     );
   };
+
+  const TemplateOneForScript = () => {
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const handleScroll = () => {
+      const positionScroll = window.pageYOffset;
+      setScrollPosition(positionScroll);
+    };
+
+    const limit =
+      Math.max(
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
+      ) *
+      (afterPScroll / 100);
+
+    useEffect(() => {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+
+    return (
+      <div className={scrollPosition > limit ? position.WraperStyle : "hidden"}>
+        <div className={size.value}>
+          <div
+            className="w-full flex flex-row-reverse"
+            onClick={() => {
+              SetCurrentTemplate(null);
+              StageOne.current?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            <Image
+              src={CloseWindow}
+              alt="closeWindow"
+              className="hover:border"
+            />
+          </div>
+          <div className={color.iconValue}>
+            {customTemplateIcon === "" ? (
+              <Image src={icon} alt="icon" width="50%" height="50%" />
+            ) : (
+              customTemplateIcon.indexOf("image/") > -1 && (
+                <Image
+                  src={customTemplateIcon}
+                  alt=""
+                  width="50%"
+                  height="50%"
+                />
+              )
+            )}
+          </div>
+          {contentInputOne !== "" ? (
+            <h2 className={size.titleValue}>{contentInputOne}</h2>
+          ) : (
+            <h2 className={size.titleValue}>Security code</h2>
+          )}
+          {contentInputTwo !== "" ? (
+            <p className={size.textValue}>{contentInputTwo}</p>
+          ) : (
+            <p className={size.textValue}>This code expires in 24 hours</p>
+          )}
+          <input className="w-4/6 h-[48px] border border-solid border-neutral-500 rounded-xl bg-white p-2"></input>
+          <div className="w-4/6 my-8 flex justify-between">
+            <button className={color.buttonValue}>Cancel</button>
+            <button className={color.buttonValue}>Continue</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const TemplateTwo = () => {
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [SecClass, setSecClass] = useState(false);
+
+    const handleScroll = () => {
+      const positionScroll = window.pageYOffset;
+      setScrollPosition(positionScroll);
+    };
+
+    const limit =
+      Math.max(
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
+      ) *
+      (afterPScroll / 100);
+
+    useEffect(() => {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+
+      setTimeout(() => {
+        setSecClass(true);
+      }, 1000 * afterSecScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+
     return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          <Image src={icon} alt="icon" />
-        </div>
-        <h2>Security Code</h2>
-        <p>This code expires in 24 hours</p>
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
-        </div>
-      </div>
-    );
-  };
-  const TemplateThree = () => {
-    return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          <Image src={icon} alt="icon" />
-        </div>
-        <h2>Security Code</h2>
-        <p>This code expires in 24 hours</p>
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
-        </div>
-      </div>
-    );
-  };
-  const TemplateFour = () => {
-    return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          <Image src={icon} alt="icon" />
-        </div>
-        <h2>Security Code</h2>
-        <p>This code expires in 24 hours</p>
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
-        </div>
-      </div>
-    );
-  };
-  const TemplateFive = () => {
-    return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          <Image src={icon} alt="icon" />
-        </div>
-        <h2>Security Code</h2>
-        <p>This code expires in 24 hours</p>
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
-        </div>
-      </div>
-    );
-  };
-  const TemplateSix = () => {
-    return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          <Image src={icon} alt="icon" />
-        </div>
-        <h2>Security Code</h2>
-        <p>This code expires in 24 hours</p>
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
-        </div>
-      </div>
-    );
-  };
-  const TemplateSeven = () => {
-    return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          <Image src={icon} alt="icon" />
-        </div>
-        <h2>Security Code</h2>
-        <p>This code expires in 24 hours</p>
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
-        </div>
-      </div>
-    );
-  };
-  const TemplateEight = () => {
-    return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          <Image src={icon} alt="icon" />
-        </div>
-        <h2>Security Code</h2>
-        <p>This code expires in 24 hours</p>
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
-        </div>
-      </div>
-    );
-  };
-  const TemplateNine = () => {
-    return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          <Image src={icon} alt="icon" />
-        </div>
-        <h2>Security Code</h2>
-        <p>This code expires in 24 hours</p>
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
-        </div>
-      </div>
-    );
-  };
-  const TemplateTen = () => {
-    return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          <Image src={icon} alt="icon" />
-        </div>
-        <h2>Security Code</h2>
-        <p>This code expires in 24 hours</p>
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
-        </div>
-      </div>
-    );
-  };
-  const TemplateEleven = () => {
-    return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          <Image src={icon} alt="icon" />
-        </div>
-        <h2>Security Code</h2>
-        <p>This code expires in 24 hours</p>
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
-        </div>
-      </div>
-    );
-  };
-  const TemplateTwelve = () => {
-    return (
-      <div className={TemplateOneStyle.wraper}>
-        <div className={TemplateOneStyle.exit}>
-          <IoMdCloseCircleOutline></IoMdCloseCircleOutline>
-        </div>
-        <div className={TemplateOneStyle.iconWraper}>
-          <Image src={icon} alt="icon" />
-        </div>
-        <h2>Security Code</h2>
-        <p>This code expires in 24 hours</p>
-        <input></input>
-        <div className={TemplateOneStyle.buttonsWraper}>
-          <button>Cancel</button>
-          <button>Continue</button>
+      <div
+        className={
+          afterPScrollIsChecked && afterSecScrollIsChecked === false
+            ? scrollPosition > limit
+              ? position.WraperStyle
+              : "hidden"
+            : afterSecScrollIsChecked
+            ? SecClass
+              ? position.WraperStyle
+              : "hidden"
+            : position.WraperStyle
+        }
+      >
+        <div className={size.value}>
+          <div
+            className="w-full flex flex-row-reverse"
+            onClick={() => {
+              SetCurrentTemplate(null);
+              StageOne.current?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            <Image src={CloseWindow} alt="closeWindow" />
+          </div>
+          <div className={color.iconValue}>
+            {customTemplateIcon === "" ? (
+              <Image src={icon} alt="icon" width="50%" height="50%" />
+            ) : (
+              customTemplateIcon.indexOf("image/") > -1 && (
+                <Image
+                  src={customTemplateIcon}
+                  alt=""
+                  width="50%"
+                  height="50%"
+                />
+              )
+            )}
+          </div>
+          {contentInputOne !== "" ? (
+            <h2 className={size.titleValue}>{contentInputOne}</h2>
+          ) : (
+            <h2 className={size.titleValue}>Security code</h2>
+          )}
+          {contentInputTwo !== "" ? (
+            <p className={size.textValue}>{contentInputTwo}</p>
+          ) : (
+            <p className={size.textValue}>This code expires in 24 hours</p>
+          )}
+          <input className="w-4/6 h-[48px] border border-solid border-neutral-500 rounded-xl bg-white p-2"></input>
+          <div className="w-4/6 my-8 flex justify-between">
+            <button className={color.buttonValue}>Cancel</button>
+            <button className={color.buttonValue}>Continue</button>
+          </div>
         </div>
       </div>
     );
@@ -383,17 +515,6 @@ export const TemplateContextProvider = ({
     setCustomTemplateIcon,
     convertFile,
     TemplateOne,
-    TemplateTwo,
-    TemplateThree,
-    TemplateFour,
-    TemplateFive,
-    TemplateSix,
-    TemplateSeven,
-    TemplateEight,
-    TemplateNine,
-    TemplateTen,
-    TemplateEleven,
-    TemplateTwelve,
     SetContentInputOne,
     SetContentInputTwo,
     SetContentInputThree,
@@ -405,14 +526,33 @@ export const TemplateContextProvider = ({
     StageFour,
     StageThree,
     StageTwo,
+    StageOne,
     visitorDevice,
     SetVisitorDevice,
     VisitorDeviceHandleChange,
-    afterXScroll,
-    SetAfterXScroll,
-    afterXScrollHandleChange,
-    afterPercentageScrollHandleChange,
+    afterPScroll,
+    SetAfterPScroll,
+    afterPScrollHandleChange,
+    afterSecScrollHandleChange,
     TrafficSourceHandleChange,
+    webHookUrl,
+    SetWebHookUrl,
+    sendFormSub,
+    SetSendFormSub,
+    sendClickData,
+    SetSendClickData,
+    visitorDeviceisChecked,
+    SetVisitorDeviceisChecked,
+    afterPScrollIsChecked,
+    SetAfterPScrollIsChecked,
+    afterSecScrollIsChecked,
+    SetAfterSecScrollIsChecked,
+    soruceDomainIsChecked,
+    SetSoruceDomainIsChecked,
+    browserLanguageIsChecked,
+    SetBrowserLanguageIsChecked,
+    exitIntentTargetingIsChecked,
+    SetExitIntentTargetingIsChecked,
   };
   return (
     <TemplateContext.Provider value={contextValue}>

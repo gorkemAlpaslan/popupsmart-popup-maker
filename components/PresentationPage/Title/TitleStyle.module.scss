@@ -1,0 +1,65 @@
+.wraper {
+  width: 1128px;
+  margin: 0px auto;
+  height: 836px;
+
+  .PageBody {
+    display: flex;
+    flex-direction: column;
+    max-width: 1128px;
+
+    h2 {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 72px;
+      line-height: 80px;
+      letter-spacing: -0.03em;
+      color: #000000;
+      margin-bottom: 20px;
+      margin-top: 67px;
+    }
+
+    .modalexp {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 30px;
+      line-height: 44px;
+      letter-spacing: -0.015em;
+      margin-bottom: 60px;
+    }
+
+    button {
+      margin-left: 12px;
+      background: #7d4aea;
+      color: #ffffff;
+      box-shadow: 0px 3px 7px 1px rgba(125, 74, 234, 0.2);
+      border-radius: 12px;
+      width: 171px;
+      height: 60px;
+      margin-bottom: 40px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .pros {
+      display: flex;
+
+      p {
+        margin-right: 20px;
+      }
+    }
+
+    .empty {
+      width: 500px;
+      height: 315px;
+      align-self: flex-end;
+      background: linear-gradient(
+        239.75deg,
+        rgba(255, 255, 255, 0.7) 1.2%,
+        rgba(255, 255, 255, 0) 70.51%
+      );
+      border-radius: 40px 40px 0px 0px;
+      margin-right: 37px;
+    }
+  }
+}

@@ -6,7 +6,7 @@
   background-color: #fff;
   position: relative;
   left: 243px;
-  bottom: 227px;
+  bottom: 225px;
 
   .camperInfo {
     width: 400px;
@@ -58,6 +58,7 @@
   button {
     width: 300px;
     height: 48px;
+    color: white;
     background: #000000;
     border-radius: 12px;
   }
@@ -69,4 +70,19 @@
     line-height: 18px;
     color: #777777;
   }
+}
+
+.MediterraneanSneakers {
+  width: 260px;
+  height: 80px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 40px;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  z-index: 2;
+  position: absolute;
+  bottom: 30px;
+  right: 110px;
 }

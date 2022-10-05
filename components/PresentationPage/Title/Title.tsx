@@ -1,22 +1,21 @@
-import React from "react";
-import homeStyle from "../../styles/Home.module.scss";
+import TitleStyle from "./TitleStyle.module.scss";
 import Image from "next/image";
-import check from "../../public/home_icons/check.png";
+import check from "../../../public/home_icons/check.png";
 import Header from "../Header/Header";
 
 const Title = () => {
   return (
-    <div className={homeStyle.wraper}>
+    <div className={TitleStyle.wraper}>
       <Header />
-      <div className={homeStyle.PageBody}>
+      <div className={TitleStyle.PageBody}>
         <h2>Simple modal card creator</h2>
-        <p className={homeStyle.modalexp}>
+        <p className={TitleStyle.modalexp}>
           A utility-first CSS framework packed with classeslike flex, pt-4,
           text-center and rotate-90 that can becomposed to build any design,
           directly in your markup.
         </p>
         <button>Try It Now</button>
-        <div className={homeStyle.pros}>
+        <div className={TitleStyle.pros}>
           <p>
             <Image src={check} alt="check" />
             Free and paid plans
@@ -29,7 +28,7 @@ const Title = () => {
             No credit card required
           </p>
         </div>
-        <div className={homeStyle.empty}></div>
+        <div className={TitleStyle.empty}></div>
       </div>
     </div>
   );

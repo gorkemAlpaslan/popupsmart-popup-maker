@@ -1,5 +1,5 @@
 import React from "react";
-import homeStyle from "../../../styles/Home.module.scss";
+import ContentStyle from "./ContentStyle.module.scss";
 import { useTemplateContext } from "../../Context/TemplateContext";
 
 const Content = () => {
@@ -16,32 +16,32 @@ const Content = () => {
     StageThree,
   } = useTemplateContext();
   return (
-    <div className={homeStyle.ContentPageEdit}>
-      <div className={homeStyle.Stage} ref={StageThree}>
+    <div className={ContentStyle.ContentPageEdit}>
+      <div className={ContentStyle.Stage} ref={StageThree}>
         <div>3</div>
         <h2>Content</h2>
       </div>
       <div>
-        <p>Edit Your Content</p>
+        <p className="mb-4">Edit Your Content</p>
       </div>
       <input
-        className={homeStyle.ContentPageInput}
-        placeholder="Sign up"
+        className={ContentStyle.ContentPageInput}
+        placeholder="Title"
         ref={refInputOne}
         onChange={() => {
           SetContentInputOne(refInputOne.current?.value);
         }}
       ></input>
       <input
-        className={homeStyle.ContentPageInput}
-        placeholder="Enter your email"
+        className={ContentStyle.ContentPageInput}
+        placeholder="Explenation"
         ref={refInputTwo}
         onChange={() => {
           SetContentInputTwo(refInputTwo.current?.value);
         }}
       ></input>
       <input
-        className={homeStyle.ContentPageInput}
+        className={ContentStyle.ContentPageInput}
         placeholder="Sign up"
         ref={refInputThree}
         onChange={() => {
@@ -49,16 +49,17 @@ const Content = () => {
         }}
       ></input>
       <input
-        className={homeStyle.ContentPageInput}
+        className={ContentStyle.ContentPageInput}
         placeholder="By singning up, you agree to Privacy Policy"
         ref={refInputFour}
         onChange={() => {
           SetContentInputFour(refInputFour.current?.value);
         }}
       ></input>
-      <div className={homeStyle.Image}>
+      <p className="mb-4">Upload image</p>
+      <div className={ContentStyle.Image}>
         <input
-          className={homeStyle.fileInput}
+          className={ContentStyle.fileInput}
           type="file"
           onChange={(e) => {
             convertFile(e.target.files, "image");

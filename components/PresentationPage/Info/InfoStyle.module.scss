@@ -1,0 +1,53 @@
+.info {
+  margin: 0px auto;
+  background-color: #666666;
+  width: 1680px;
+  height: 630px;
+  position: relative;
+
+  .data {
+    display: flex;
+    position: absolute;
+
+    top: 350px;
+    left: 240px;
+    .dataEach {
+      margin-right: 120px;
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+    }
+
+    h1 {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 72px;
+      line-height: 80px;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      width: 168px;
+    }
+
+    p {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      max-width: 100px;
+    }
+
+    h2 {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 36px;
+      line-height: 44px;
+      letter-spacing: -0.015em;
+      color: #ffffff;
+      max-width: 280px;
+    }
+  }
+}
