@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState, useRef } from "react";
-////
+
 import CloseWindow from "../../public/template_icons/Template_exit_icon.png";
 import Image from "next/image";
-import icon from "../../public/template_icons/Template_1_icon.png";
+import TemplateOneicon from "../../public/template_icons/Template_1_icon.png";
+import TemplateFouricon from "../../public/template_icons/Template_4_icon.png";
 
-////
 const TemplateContext = createContext({});
 
 type TemplateContextProviderProps = {
@@ -27,8 +27,8 @@ export const TemplateContextProvider = ({
     title: "medium",
     value:
       "flex flex-col justify-center items-center w-[480px] p-8 rounded-xl bg-white border overflow-hidden",
-    titleValue: "font-bold text-3xl my-5",
-    textValue: "font-normal text-xl my-6",
+    titleValue: "font-bold text-3xl my-5 break-words max-w-[400px]",
+    textValue: "font-normal text-xl my-6 text-center break-words max-w-[380px]",
   });
 
   const [position, SetPosition] = useState<{
@@ -75,6 +75,7 @@ export const TemplateContextProvider = ({
   const [webHookUrl, SetWebHookUrl] = useState<string | null>(null);
   const [sendFormSub, SetSendFormSub] = useState<boolean>(false);
   const [sendClickData, SetSendClickData] = useState<boolean>(false);
+  const [scriptCode, SetScriptCode] = useState<string | null>("");
 
   const refInputOne = useRef<HTMLInputElement | null>(null);
   const refInputTwo = useRef<HTMLInputElement | null>(null);
@@ -134,23 +135,26 @@ export const TemplateContextProvider = ({
       value:
         "flex flex-col justify-center items-center w-[360px] p-6 rounded-xl bg-white border overflow-hidden",
 
-      titleValue: "font-bold text-xl my-1",
-      textValue: "font-normal text-sm my-1",
+      titleValue: "font-bold text-xl my-1 break-words max-w-[300px]",
+      textValue:
+        "font-normal text-sm my-1 text-center break-words max-w-[260px]",
     },
     {
       title: "medium",
       value:
         "flex flex-col justify-center items-center w-[480px] p-8 rounded-xl bg-white border overflow-hidden",
-      titleValue: "font-bold text-3xl my-5",
-      textValue: "font-normal text-xl my-6",
+      titleValue: "font-bold text-3xl my-5 break-words max-w-[400px]",
+      textValue:
+        "font-normal text-xl my-6 text-center break-words max-w-[380px]",
     },
     {
       title: "large",
       value:
         "flex flex-col justify-center items-center w-[600px] p-10 rounded-xl bg-white border overflow-hidden",
 
-      titleValue: "font-bold text-5xl my-5",
-      textValue: "font-normal text-3xl my-10",
+      titleValue: "font-bold text-5xl my-5 break-words max-w-[550px]",
+      textValue:
+        "font-normal text-3xl my-10 text-center break-words max-w-[500px]",
     },
   ];
 
@@ -304,7 +308,12 @@ export const TemplateContextProvider = ({
           </div>
           <div className={color.iconValue}>
             {customTemplateIcon === "" ? (
-              <Image src={icon} alt="icon" width="50%" height="50%" />
+              <Image
+                src={TemplateOneicon}
+                alt="icon"
+                width="50%"
+                height="50%"
+              />
             ) : (
               customTemplateIcon.indexOf("image/") > -1 && (
                 <Image
@@ -378,7 +387,12 @@ export const TemplateContextProvider = ({
           </div>
           <div className={color.iconValue}>
             {customTemplateIcon === "" ? (
-              <Image src={icon} alt="icon" width="50%" height="50%" />
+              <Image
+                src={TemplateOneicon}
+                alt="icon"
+                width="50%"
+                height="50%"
+              />
             ) : (
               customTemplateIcon.indexOf("image/") > -1 && (
                 <Image
@@ -410,7 +424,7 @@ export const TemplateContextProvider = ({
     );
   };
 
-  const TemplateTwo = () => {
+  const TemplateFour = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const [SecClass, setSecClass] = useState(false);
 
@@ -466,7 +480,12 @@ export const TemplateContextProvider = ({
           </div>
           <div className={color.iconValue}>
             {customTemplateIcon === "" ? (
-              <Image src={icon} alt="icon" width="50%" height="50%" />
+              <Image
+                src={TemplateFouricon}
+                alt="icon"
+                width="50%"
+                height="50%"
+              />
             ) : (
               customTemplateIcon.indexOf("image/") > -1 && (
                 <Image
@@ -481,17 +500,18 @@ export const TemplateContextProvider = ({
           {contentInputOne !== "" ? (
             <h2 className={size.titleValue}>{contentInputOne}</h2>
           ) : (
-            <h2 className={size.titleValue}>Security code</h2>
+            <h2 className={size.titleValue}>Delete your profile</h2>
           )}
           {contentInputTwo !== "" ? (
             <p className={size.textValue}>{contentInputTwo}</p>
           ) : (
-            <p className={size.textValue}>This code expires in 24 hours</p>
+            <p className={size.textValue}>
+              Your profile will be automatically deleted after 1 month.
+            </p>
           )}
-          <input className="w-4/6 h-[48px] border border-solid border-neutral-500 rounded-xl bg-white p-2"></input>
-          <div className="w-4/6 my-8 flex justify-between">
+          <div className="w-full h-[110px] my-8 flex flex-col items-center justify-between">
+            <button className={color.buttonValue}>Delete my profile</button>
             <button className={color.buttonValue}>Cancel</button>
-            <button className={color.buttonValue}>Continue</button>
           </div>
         </div>
       </div>
@@ -515,6 +535,7 @@ export const TemplateContextProvider = ({
     setCustomTemplateIcon,
     convertFile,
     TemplateOne,
+    TemplateFour,
     SetContentInputOne,
     SetContentInputTwo,
     SetContentInputThree,
@@ -553,6 +574,7 @@ export const TemplateContextProvider = ({
     SetBrowserLanguageIsChecked,
     exitIntentTargetingIsChecked,
     SetExitIntentTargetingIsChecked,
+    scriptCode,
   };
   return (
     <TemplateContext.Provider value={contextValue}>

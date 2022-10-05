@@ -16,6 +16,8 @@ const SettingsAndCode = () => {
     SetSendFormSub,
     sendClickData,
     SetSendClickData,
+    ScriptcodeHandler,
+    scriptCode,
   } = useTemplateContext();
 
   return (
@@ -55,11 +57,14 @@ const SettingsAndCode = () => {
             }}
           />
         </div>
-        <button className={SettingsAndCodeStyle.getButton}>
+        <button
+          className={SettingsAndCodeStyle.getButton}
+          onClick={ScriptcodeHandler}
+        >
           Get Your Code
         </button>
         <div className={SettingsAndCodeStyle.getCode}>
-          <p>scriptCodeWillBeHere</p>
+          <p>{scriptCode}</p>
         </div>
       </div>
     </div>

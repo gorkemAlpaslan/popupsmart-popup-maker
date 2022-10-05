@@ -10,8 +10,10 @@ const CounterOn: NextPage<{
   message: string;
 }> = (props) => {
   const [counterOn, SetCounterOn] = useState(false);
+
+  const Test = ScrollTrigger as any;
   return (
-    <ScrollTrigger
+    <Test
       onEnter={() => {
         SetCounterOn(true);
       }}
@@ -28,7 +30,7 @@ const CounterOn: NextPage<{
           <p>{props.message}</p>
         </div>
       )}
-    </ScrollTrigger>
+    </Test>
   );
 };
 
