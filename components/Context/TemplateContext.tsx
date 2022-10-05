@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState, useRef } from "react";
-
 import CloseWindow from "../../public/template_icons/Template_exit_icon.png";
 import Image from "next/image";
 import TemplateOneicon from "../../public/template_icons/Template_1_icon.png";
@@ -305,85 +304,6 @@ export const TemplateContextProvider = ({
             }}
           >
             <Image src={CloseWindow} alt="closeWindow" />
-          </div>
-          <div className={color.iconValue}>
-            {customTemplateIcon === "" ? (
-              <Image
-                src={TemplateOneicon}
-                alt="icon"
-                width="50%"
-                height="50%"
-              />
-            ) : (
-              customTemplateIcon.indexOf("image/") > -1 && (
-                <Image
-                  src={customTemplateIcon}
-                  alt=""
-                  width="50%"
-                  height="50%"
-                />
-              )
-            )}
-          </div>
-          {contentInputOne !== "" ? (
-            <h2 className={size.titleValue}>{contentInputOne}</h2>
-          ) : (
-            <h2 className={size.titleValue}>Security code</h2>
-          )}
-          {contentInputTwo !== "" ? (
-            <p className={size.textValue}>{contentInputTwo}</p>
-          ) : (
-            <p className={size.textValue}>This code expires in 24 hours</p>
-          )}
-          <input className="w-4/6 h-[48px] border border-solid border-neutral-500 rounded-xl bg-white p-2"></input>
-          <div className="w-4/6 my-8 flex justify-between">
-            <button className={color.buttonValue}>Cancel</button>
-            <button className={color.buttonValue}>Continue</button>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const TemplateOneForScript = () => {
-    const [scrollPosition, setScrollPosition] = useState(0);
-    const handleScroll = () => {
-      const positionScroll = window.pageYOffset;
-      setScrollPosition(positionScroll);
-    };
-
-    const limit =
-      Math.max(
-        document.body.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.clientHeight,
-        document.documentElement.scrollHeight,
-        document.documentElement.offsetHeight
-      ) *
-      (afterPScroll / 100);
-
-    useEffect(() => {
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }, []);
-
-    return (
-      <div className={scrollPosition > limit ? position.WraperStyle : "hidden"}>
-        <div className={size.value}>
-          <div
-            className="w-full flex flex-row-reverse"
-            onClick={() => {
-              SetCurrentTemplate(null);
-              StageOne.current?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            <Image
-              src={CloseWindow}
-              alt="closeWindow"
-              className="hover:border"
-            />
           </div>
           <div className={color.iconValue}>
             {customTemplateIcon === "" ? (
