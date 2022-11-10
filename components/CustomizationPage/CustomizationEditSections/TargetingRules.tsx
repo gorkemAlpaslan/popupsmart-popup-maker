@@ -1,9 +1,9 @@
 import { useState } from "react";
 import TargetingRulesStyle from "./TargetingRulesStyle.module.scss";
-import ComputerSelected from "../../../public/TargetingRulesIcons/Computer_Selected_icon.png";
-import Computerunselected from "../../../public/TargetingRulesIcons/Computer_Unselected_icon.png";
-import MobileSelected from "../../../public/TargetingRulesIcons/Mobile_Selected_icon.png";
-import Mobileunselected from "../../../public/TargetingRulesIcons/Mobile_unselected_icon.png";
+import ComputerSelected from "../../../public/TargetingRulesIcons/Computer_Selected_Icon.png";
+import Computerunselected from "../../../public/TargetingRulesIcons/Computer_Unselected_Icon.png";
+import MobileSelected from "../../../public/TargetingRulesIcons/Mobile_Selected_Icon.png";
+import Mobileunselected from "../../../public/TargetingRulesIcons/Mobile_unselected_Icon.png";
 import Image from "next/image";
 
 import {

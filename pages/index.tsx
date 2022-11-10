@@ -11,6 +11,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import FreqAskQuestions from "../components/PresentationPage/freqAskQuestion/FreqAskQuestions";
 import EndPage from "../components/PresentationPage/endPage/EndPage";
+import { createRoot } from "react-dom/client";
 
 const Home: NextPage = () => {
   return (
