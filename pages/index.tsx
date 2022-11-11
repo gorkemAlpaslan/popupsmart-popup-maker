@@ -1,16 +1,16 @@
 import type { NextPage } from "next";
 import homeStyle from "../styles/Home.module.scss";
-import Title from "../components/PresentationPage/Title/Title";
-import Info from "../components/PresentationPage/Info/Info";
-import TemplatesPage from "../components/TemplatesPage/TemplatesPage";
-import Customization from "../components/CustomizationPage/Customization";
+import Title from "../components/Presentation/Title/Title";
+import Info from "../components/Presentation/Info/Info";
+import TemplatesPage from "../components/Templates/TemplatesPage";
+import Customization from "../components/Customization/Customization";
 
-import BelowInfo from "../components/PresentationPage/BelowInfo/BelowInfo";
+import BelowInfo from "../components/Presentation/BelowInfo/BelowInfo";
 import { useRef, useState } from "react";
 
 import Image from "next/image";
-import FreqAskQuestions from "../components/PresentationPage/freqAskQuestion/FreqAskQuestions";
-import EndPage from "../components/PresentationPage/endPage/EndPage";
+import FreqAskQuestions from "../components/Presentation/freqAskQuestion/FreqAskQuestions";
+import EndPage from "../components/Presentation/endPage/EndPage";
 import { createRoot } from "react-dom/client";
 
 const Home: NextPage = () => {

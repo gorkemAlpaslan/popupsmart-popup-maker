@@ -1,6 +1,6 @@
 import "../styles/globals.scss";
 import type { AppProps } from "next/app";
-import { TemplateContextProvider } from "../components/Context/TemplateContext";
+import { TemplateContextProvider } from "../Context/TemplateContext";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
