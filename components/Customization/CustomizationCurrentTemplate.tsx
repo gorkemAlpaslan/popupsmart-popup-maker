@@ -20,29 +20,90 @@ const CustomizationCurrentTemplate = () => {
   } = useTemplateContext();
 
   return (
-    <div className={CustomizationCurrentTemplateStyle.currentTemplateWraper}>
-      <div className="absolute top-[-25px]">User Window</div>
-      {currentTemplate == "TemplateOne" ? <TemplateOne></TemplateOne> : null}
-      {currentTemplate == "TemplateTwo" ? <TemplateTwo></TemplateTwo> : null}
-      {currentTemplate == "TemplateThree" ? (
-        <TemplateThree></TemplateThree>
+    <div className={CustomizationCurrentTemplateStyle.currentTemplateSection}>
+      {currentTemplate == "TemplateOne" ? (
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateOne></TemplateOne>
+        </div>
       ) : null}
-      {currentTemplate == "TemplateFour" ? <TemplateFour></TemplateFour> : null}
-      {currentTemplate == "TemplateFive" ? <TemplateFive></TemplateFive> : null}
-      {currentTemplate == "TemplateSix" ? <TemplateSix></TemplateSix> : null}
+      {currentTemplate == "TemplateTwo" ? (
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateTwo></TemplateTwo>
+        </div>
+      ) : null}
+      {currentTemplate == "TemplateThree" ? (
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateThree></TemplateThree>
+        </div>
+      ) : null}
+      {currentTemplate == "TemplateFour" ? (
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateFour></TemplateFour>
+        </div>
+      ) : null}
+      {currentTemplate == "TemplateFive" ? (
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateFive></TemplateFive>
+        </div>
+      ) : null}
+      {currentTemplate == "TemplateSix" ? (
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateSix></TemplateSix>
+        </div>
+      ) : null}
       {currentTemplate == "TemplateSeven" ? (
-        <TemplateSeven></TemplateSeven>
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateSeven></TemplateSeven>
+        </div>
       ) : null}
       {currentTemplate == "TemplateEight" ? (
-        <TemplateEight></TemplateEight>
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateEight></TemplateEight>
+        </div>
       ) : null}
-      {currentTemplate == "TemplateNine" ? <TemplateNine></TemplateNine> : null}
-      {currentTemplate == "TemplateTen" ? <TemplateTen></TemplateTen> : null}
+      {currentTemplate == "TemplateNine" ? (
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateNine></TemplateNine>
+        </div>
+      ) : null}
+      {currentTemplate == "TemplateTen" ? (
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateTen></TemplateTen>
+        </div>
+      ) : null}
       {currentTemplate == "TemplateEleven" ? (
-        <TemplateEleven></TemplateEleven>
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateEleven></TemplateEleven>
+        </div>
       ) : null}
       {currentTemplate == "TemplateTwelve" ? (
-        <TemplateTwelve></TemplateTwelve>
+        <div
+          className={CustomizationCurrentTemplateStyle.currentTemplateWraper}
+        >
+          <TemplateTwelve></TemplateTwelve>
+        </div>
       ) : null}
     </div>
   );

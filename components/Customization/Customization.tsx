@@ -11,10 +11,10 @@ const Customization = () => {
     <div>
       <div className={CustomizationStyle.CustomizationPage} ref={StageTwo}>
         {currentTemplate ? <CustomizationEdit /> : ""}
-        {currentTemplate ? (
-          <CustomizationCurrentTemplate></CustomizationCurrentTemplate>
-        ) : (
-          ""
+        {currentTemplate && (
+          <div>
+            <CustomizationCurrentTemplate />
+          </div>
         )}
       </div>
     </div>
