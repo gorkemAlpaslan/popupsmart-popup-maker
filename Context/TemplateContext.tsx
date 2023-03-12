@@ -252,8 +252,8 @@ export const TemplateContextProvider = ({
   ];
 
   const TemplateOne = () => {
-    const [scrollPosition, setScrollPosition] = useState(0);
     const [SecClass, setSecClass] = useState(false);
+    const [scrollPosition, setScrollPosition] = useState(0);
 
     const handleScroll = () => {
       const positionScroll = window.pageYOffset;

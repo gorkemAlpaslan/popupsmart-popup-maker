@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
-import dynamic from "next/dynamic";
 
 const CounterOn: NextPage<{
   number: number;
