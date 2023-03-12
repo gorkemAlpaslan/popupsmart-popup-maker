@@ -35,7 +35,7 @@ export const TemplateContextProvider = ({
     WraperStyle: string;
   }>({
     value: "top-left",
-    WraperStyle: "absolute top-0 left-0",
+    WraperStyle: "absolute top-0 left-0 border border-solid border-neutral-500",
   });
 
   const [color, SetColor] = useState<{
@@ -198,40 +198,48 @@ export const TemplateContextProvider = ({
   const positions = [
     {
       value: "top-left",
-      WraperStyle: "absolute top-0 left-0",
+      WraperStyle:
+        "absolute top-0 left-0 border border-solid border-neutral-500",
     },
     {
       value: "top",
-      WraperStyle: "absolute top-0 left-1/2 transform -translate-x-1/2",
+      WraperStyle:
+        "absolute top-0 left-1/2 transform -translate-x-1/2 border border-solid border-neutral-500",
     },
     {
       value: "top-right",
-      WraperStyle: "absolute top-0 right-0",
+      WraperStyle:
+        "absolute top-0 right-0 border border-solid border-neutral-500",
     },
     {
       value: "left",
-      WraperStyle: "absolute top-1/2 left-0 transform -translate-y-1/2",
+      WraperStyle:
+        "absolute top-1/2 left-0 transform -translate-y-1/2 border border-solid border-neutral-500",
     },
     {
       value: "center",
       WraperStyle:
-        "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+        "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border border-solid border-neutral-500",
     },
     {
       value: "right",
-      WraperStyle: "absolute top-1/2 right-0 transform -translate-y-1/2",
+      WraperStyle:
+        "absolute top-1/2 right-0 transform -translate-y-1/2 border border-solid border-neutral-500",
     },
     {
       value: "bottom-left",
-      WraperStyle: "absolute bottom-0 left-0",
+      WraperStyle:
+        "absolute bottom-0 left-0 border border-solid border-neutral-500",
     },
     {
       value: "bottom",
-      WraperStyle: "absolute bottom-0 left-1/2 transform -translate-x-1/2",
+      WraperStyle:
+        "absolute bottom-0 left-1/2 transform -translate-x-1/2 border border-solid border-neutral-500",
     },
     {
       value: "bottom-right",
-      WraperStyle: "absolute bottom-0 right-0",
+      WraperStyle:
+        "absolute bottom-0 right-0 border border-solid border-neutral-500",
     },
   ];
 
