@@ -34,6 +34,7 @@ const SettingsAndCode = () => {
             id="outlined-basic"
             label="Your Webhook URL"
             variant="outlined"
+            disabled
             onChange={(e) => {
               SetWebHookUrl(e.target.value);
             }}
@@ -60,6 +61,7 @@ const SettingsAndCode = () => {
         <button
           className={SettingsAndCodeStyle.getButton}
           onClick={ScriptcodeHandler}
+          disabled
         >
           Get Your Code
         </button>

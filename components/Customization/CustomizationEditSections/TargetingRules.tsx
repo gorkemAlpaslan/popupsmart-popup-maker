@@ -242,7 +242,8 @@ const TargetingRules = () => {
           <Switch
             checked={soruceDomainIsChecked}
             onChange={() => {
-              SetSoruceDomainIsChecked(!soruceDomainIsChecked);
+              //disabled for now
+              // SetSoruceDomainIsChecked(!soruceDomainIsChecked);
             }}
             color="secondary"
           />
@@ -260,7 +261,8 @@ const TargetingRules = () => {
           <Switch
             checked={browserLanguageIsChecked}
             onChange={() => {
-              SetBrowserLanguageIsChecked(!browserLanguageIsChecked);
+              //disabled for now
+              // SetBrowserLanguageIsChecked(!browserLanguageIsChecked);
             }}
             color="secondary"
           />
@@ -302,7 +304,8 @@ const TargetingRules = () => {
         <Switch
           checked={exitIntentTargetingIsChecked}
           onChange={() => {
-            SetExitIntentTargetingIsChecked(!exitIntentTargetingIsChecked);
+            //disabled for now
+            // SetExitIntentTargetingIsChecked(!exitIntentTargetingIsChecked);
           }}
           color="secondary"
         />
