@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## PopupSmart Popup Maker
 
 PopupSmart Popup Maker is a web application that allows users to create and customize popups for their websites. It was created as a practicum case study during my time at PopupSmart.
