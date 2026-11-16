@@ -1,15 +1,24 @@
-## PopupSmart Popup Maker
+# PopupSmart Popup Maker
 
-PopupSmart Popup Maker is a web application that allows users to create and customize popups for their websites. It was created as a practicum case study during my time at PopupSmart.
+An interactive popup customization studio built with **Next.js** and **TypeScript** as the final case study for the **PopupSmart Practicum**.
 
-## Usage
+## Live Demo
+- [View Deployed App](https://storied-cobbler-6dd078.netlify.app/)
 
-To use the application, simply visit the live version at https://storied-cobbler-6dd078.netlify.app/. Once on the website, you can select from a variety of pre-made templates and customize them to your liking. However, please note that the feature to generate the script code for the customized template is not currently functional.
+## Features
+- Pre-built popup templates with live preview
+- Customization panels for **Appearance**, **Content**, and **Settings**
+- Smooth UI transitions powered by **GSAP** and **Material UI**
 
-## Technologies Used
+## Tech Stack
+- **Next.js 12** & **React 18**
+- **TypeScript**
+- **Material UI (`@mui/material`)** & **GSAP**
 
-This project was built using TypeScript, Next.js, React, HTML, CSS, JavaScript, Tailwind, SASS.
-
-## Contact
-
-If you have any questions or feedback, please feel free to reach out to me via email at gorkem.alpaslan98@gmail.com or visit my page https://gorkemalpaslan.com and get contact. Thank you for using PopupSmart Popup Maker!
+## Getting Started
+```bash
+git clone https://github.com/gorkemAlpaslan/popupsmart-popup-maker.git
+cd popupsmart-popup-maker
+npm install
+npm run dev
+```
